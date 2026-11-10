@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#101619" />
+  <title>Frostbound: Last Ember</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="game" aria-label="Frostbound wilderness game"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">ᛟ</span><div><strong>FROSTBOUND</strong><small>THE LAST EMBER</small></div></div>
+      <div class="day-card"><span class="sun-mark" id="day-icon">☼</span><div><small id="phase-label">DAY 1 · MORNING</small><strong id="clock">06:00</strong></div><div class="day-track"><i id="day-progress"></i></div></div>
+      <button class="icon-button" id="pause-button" title="Pause (Esc)">Ⅱ</button>
+    </header>
+    <section class="vitals" aria-label="Player status">
+      <div class="vital"><span>❤</span><div class="meter"><b id="health-fill" class="health"></b></div><small id="health-text">100</small></div>
+      <div class="vital"><span>◈</span><div class="meter"><b id="stamina-fill" class="stamina"></b></div><small id="stamina-text">100</small></div>
+      <div class="vital"><span>♨</span><div class="meter"><b id="hunger-fill" class="hunger"></b></div><small id="hunger-text">100</small></div>
+    </section>
+    <aside class="quest-card"><span class="quest-glyph">✦</span><div><small>YOUR FATE</small><strong id="quest-title">Find the old shrine</strong><p id="quest-copy">Gather what you need. The third night brings the Warden.</p></div></aside>
+    <section class="inventory-card">
+      <div class="section-heading"><span>PACK</span><small>R</small></div>
+      <div class="resource-grid">
+        <div class="resource"><span class="res-icon wood-icon">⌁</span><span>Wood</span><b id="wood-count">0</b></div>
+        <div class="resource"><span class="res-icon stone-icon">◆</span><span>Stone</span><b id="stone-count">0</b></div>
+        <div class="resource"><span class="res-icon food-icon">✿</span><span>Food</span><b id="food-count">0</b></div>
+        <div class="resource"><span class="res-icon hide-icon">◒</span><span>Hide</span><b id="hide-count">0</b></div>
+      </div>
+      <div class="craft-heading"><span>FIELDCRAFT</span><small>Craft anywhere</small></div>
+      <button class="craft-button" data-craft="blade"><span class="craft-icon">⚔</span><span><b>Rune-forged blade</b><small>8 wood · 6 stone</small></span><i>CRAFT</i></button>
+      <button class="craft-button" data-craft="fire"><span class="craft-icon fire-icon">♨</span><span><b>Ember campfire</b><small>6 wood · 4 stone</small></span><i>CRAFT</i></button>
+      <button class="craft-button" data-craft="shelter"><span class="craft-icon">⌂</span><span><b>Wayfarer shelter</b><small>12 wood · 4 hide</small></span><i>CRAFT</i></button>
+      <div class="pack-foot"><span>✦ <b id="weapon-label">HUNTER'S AXE</b></span><button id="eat-button">Eat berries <kbd>C</kbd></button></div>
+    </section>
+    <div class="interaction-prompt" id="prompt"></div>
+    <div class="controls-hint"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move <span>·</span><kbd>CLICK</kbd> attack <span>·</span><kbd>SHIFT</kbd> dodge <span>·</span><kbd>E</kbd> gather</div>
+    <div class="touch-controls" id="touch-controls">
+      <div class="touch-pad" id="move-pad"><span>✥</span></div>
+      <button class="touch-action dodge-touch" id="dodge-touch">↗</button>
+      <button class="touch-action attack-touch" id="attack-touch">⚔</button>
+      <button class="touch-action gather-touch" id="gather-touch">E</button>
+    </div>
+    <div class="overlay" id="intro-overlay">
+      <div class="intro-card">
+        <div class="rune-line">ᛉ　ᚠ　ᛟ　ᚱ　ᛞ</div>
+        <div class="eyebrow">A WILDERNESS SURVIVAL SAGA</div>
+        <h1>FROST<span>BOUND</span></h1>
+        <div class="subtitle">THE LAST EMBER</div>
+        <p>The old gods have fallen silent. A frost-born Warden stirs beneath the pines.<br />Build your strength. Keep the fire. Face the long night.</p>
+        <button class="primary-button" id="start-button">BEGIN YOUR SAGA <span>→</span></button>
+        <div class="intro-note"><span>WASD</span> to roam <i>·</i> <span>CLICK</span> to strike <i>·</i> <span>E</span> to gather<br />Craft a blade. Survive three nights. End the curse.</div>
+      </div>
+    </div>
+    <div class="overlay hidden" id="pause-overlay"><div class="result-card"><div class="eyebrow">THE WIND HOLDS ITS BREATH</div><h2>PAUSED</h2><p>Your fire is still burning.</p><button class="primary-button" id="resume-button">RETURN TO THE WILD <span>→</span></button></div></div>
+    <div class="overlay hidden" id="end-overlay"><div class="result-card"><div class="eyebrow" id="end-eyebrow">THE SAGA ENDS</div><h2 id="end-title">THE WILD CLAIMS YOU</h2><p id="end-copy"></p><button class="primary-button" id="restart-button">RISE AGAIN <span>↻</span></button></div></div>
+    <div class="toast" id="toast"></div>
+    <div class="boss-bar hidden" id="boss-bar"><div><span>THE FROST WARDEN</span><b id="boss-health-label">100%</b></div><i><b id="boss-health-fill"></b></i></div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
